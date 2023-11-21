@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eternis Forge</title>
+  <style>
+    body {
+      background-color: #4B0082; /* Dark Purple */
+      color: black;
+      font-family: Arial, sans-serif;
+      padding: 10px; /* Added padding for spacing */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 250px; /* Reduced width */
+      margin-bottom: 10px;
+      background-color: cyan;
+      color: black;
+      padding: 5px;
+      border: none;
+      border-radius: 5px; /* Rounded corners */
+    }
+
+    .code-box {
+      width: 100%;
+      margin-bottom: 20px;
+      background-color: #483D8B; /* Dark Slate Blue */
+      padding: 10px; /* Added padding for spacing */
+      border-radius: 10px; /* Rounded corners */
+    }
+
+    .code-box textarea {
+      width: calc(100% - 10px);
+      background-color: #008B8B; /* Dark Cyan */
+      color: white;
+      border: none;
+      padding: 5px;
+      border-radius: 5px; /* Rounded corners */
+      margin-bottom: 10px; /* Added spacing */
+    }
+
+    button {
+      background-color: white;
+      color: #4B0082; /* Dark Purple */
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px; /* Rounded corners */
+      margin-bottom: 10px; /* Added spacing */
+    }
+
+    button:hover {
+      background-color: #4B0082; /* Dark Purple */
+      color: white;
+    }
+  </style>
+  <script>
+    function generateCode() {
+      var itemName1 = document.getElementById("itemName1").value;
+      var itemNameNoSpaces = itemName1.replace(/\s/g, ''); // Remove spaces from itemName1
+      var itemID = document.getElementById("itemID").value;
+      var itemDescription1 = document.getElementById("itemDescription1").value;
+      var itemProperties = document.getElementById("itemProperties").value;
+
+      var codeSegment1 = "private void " + itemNameNoSpaces + "() // ID = " + itemID + "\n{\n\t" + "itemName = " + itemName1 + "\n\titemDescription = " + itemDescription1 + "\n\t" + itemProperties + "\n}";
+
+      var codeSegment2 = "case " + itemID + ":\n\t" + itemNameNoSpaces + "();\n\tbreak;";
+
+      document.getElementById("generatedCode").value = codeSegment1 + "\n\n" + codeSegment2;
+    }
+
+    function copyCode() {
+      var generatedCode = document.getElementById("generatedCode");
+      generatedCode.select();
+      document.execCommand("copy");
+    }
+  </script>
+</head>
+<body>
+
+  <div class="code-box">
+    <label for="itemName1">Item Name:</label>
+    <input type="text" id="itemName1">
+
+    <label for="itemID">Item ID:</label>
+    <input type="text" id="itemID">
+
+    <label for="itemDescription1">Item Description:</label>
+    <textarea id="itemDescription1" rows="4" cols="30"></textarea>
+
+    <label for="itemProperties">Item Properties:</label>
+    <textarea id="itemProperties" rows="4" cols="30"></textarea>
+
+    <button onclick="generateCode()">Generate Code</button>
+
+    <label for="generatedCode">Generated Code:</label>
+    <textarea id="generatedCode" rows="8" cols="50" readonly></textarea>
+
+    <button onclick="copyCode()">Copy Code</button>
+  </div>
+
+</body>
+</html>
