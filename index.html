@@ -68,7 +68,7 @@
       var itemDescription1 = document.getElementById("itemDescription1").value;
       var itemProperties = document.getElementById("itemProperties").value;
 
-      var codeSegment1 = "private void " + itemNameNoSpaces + "() // ID = " + itemID + "\n{\n\t" + "itemName = " + itemName1 + "\n\titemDescription = " + itemDescription1 + "\n\t" + itemProperties + "\n}";
+      var codeSegment1 = "private void " + itemNameNoSpaces + "() // ID = " + itemID + "\n{\n\t" + "itemName = \"" + itemName1 + "\";\n\titemDescription = \"" + itemDescription1 + "\";\n\t" + itemProperties + "\n}";
 
       var codeSegment2 = "case " + itemID + ":\n\t" + itemNameNoSpaces + "();\n\tbreak;";
 
@@ -90,6 +90,7 @@
 
     <label for="itemID">Item ID:</label>
     <input type="text" id="itemID">
+    <span style="font-size: 12px; color: #008B8B;">This is the identifier code for this item. If you aren't sure what to put here, just use 0.</span>
 
     <label for="itemDescription1">Item Description:</label>
     <textarea id="itemDescription1" rows="4" cols="30"></textarea>
